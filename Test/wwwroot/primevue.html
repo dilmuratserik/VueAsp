@@ -34,10 +34,6 @@
             data() {
                 return { products: [] } 
             },
-            components: {
-                "p-datatable": primevue.datatable,
-                "p-column": primevue.column
-            },
             methods: {
                 load() {
                     const vm = this;
@@ -53,12 +49,8 @@
                 }
             }
         };
-
         createApp(App)
-            .use(primevue.config.default)
             .mount("#app");
-
-        
     </script>
 </body>
 </html>
