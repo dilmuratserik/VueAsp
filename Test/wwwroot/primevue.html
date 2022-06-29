@@ -20,7 +20,7 @@
 </head>
 <body>
     <div id="app">
-        <button @@click="load()">Click</button>
+        <button @click="load()">Click</button>
         <p-datatable :value="products" show-gridlines responsive-layout="scroll">
             <p-column field="Code" header="Code"></p-column>
             <p-column field="name" header="Name"></p-column>
@@ -29,11 +29,10 @@
         </p-datatable>
     </div>
     <script type="module">
-        const { createApp, ref, onMounted } = Vue;
 
         const App = {
             data() {
-                return { products: [] }
+                return { products: [] } 
             },
             components: {
                 "p-datatable": primevue.datatable,
@@ -43,7 +42,7 @@
                 load() {
                     const vm = this;
                     $.post({
-                        url: "http://localhost:33832/Home/LoadData"
+                        url: "https://localhost:44310/Home/LoadData"
                     }).done(function (data) {
                         vm.products = data;
                         console.log("Response length: " + vm.products);
@@ -59,9 +58,7 @@
             .use(primevue.config.default)
             .mount("#app");
 
-        $(function () {
-            App.methods.load();
-        });
+        
     </script>
 </body>
 </html>

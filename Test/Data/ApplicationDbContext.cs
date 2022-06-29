@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Test.Models;
 
 namespace Test.Data
 {
@@ -12,5 +13,6 @@ namespace Test.Data
             : base(options)
         {
         }
+        public DbSet<PersonModel> Person { get; set; }
     }
 }
