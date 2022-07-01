@@ -13,6 +13,22 @@ namespace Test.Data
             : base(options)
         {
         }
-        public DbSet<PersonModel> Person { get; set; }
+
+        public ApplicationDbContext(DbSet<Person> person)
+        {
+            this.person = person;
+        }
+
+        private DbSet<Person> person;
+
+        public DbSet<Person> GetPerson()
+        {
+            return person;
+        }
+
+        public void SetPerson(DbSet<Person> value)
+        {
+            person = value;
+        }
     }
 }

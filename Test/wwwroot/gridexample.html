@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://unpkg.com/primevue/resources/themes/lara-light-indigo/theme.css" rel="stylesheet">
+    <link href="https://unpkg.com/primevue/resources/primevue.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/primevue/core/core.min.js"></script>
+    <script src="https://unpkg.com/primevue/slider/slider.min.js"></script>
+    <script src="https://unpkg.com/primevue@^3/datatable/datatable.min.js"></script>
+    <script src="https://unpkg.com/primevue@^3/column/column.min.js"></script>
+    <link href="css/global.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script src="http://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/global.js"></script>
+</head>
+<body>
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            color: white;
+            text-align: center;
+            height: 30px;
+            display: none;
+        }
+    </style>
+    <!--https://www.primefaces.org/primevue/datatable-->
+    <div id="app">
+        <div class="card">
+            <p-datatable :value="products" responsive-layout="scroll">
+                <p-column field="code" header="Code"></p-column>
+                <p-column field="name" header="Name"></p-column>
+                <p-column field="category" header="Category"></p-column>
+                <p-column field="quantity" header="Quantity"></p-column>
+            </p-datatable>
+        </div>
+
+        <script type="module">
+            var json = '{"data":[{"id":"1000","code":"f230fh0g3","name":"Bamboo Watch","description":"Product Description","image":"bamboo-watch.jpg","price":65,"category":"Accessories","quantity":24,"inventoryStatus":"INSTOCK","rating":5},{"id":"1001","code":"nvklal433","name":"Black Watch","description":"Product Description","image":"black-watch.jpg","price":72,"category":"Accessories","quantity":61,"inventoryStatus":"INSTOCK","rating":4},{"id":"1002","code":"zz21cz3c1","name":"Blue Band","description":"Product Description","image":"blue-band.jpg","price":79,"category":"Fitness","quantity":2,"inventoryStatus":"LOWSTOCK","rating":3},{"id":"1003","code":"244wgerg2","name":"Blue T-Shirt","description":"Product Description","image":"blue-t-shirt.jpg","price":29,"category":"Clothing","quantity":25,"inventoryStatus":"INSTOCK","rating":5},{"id":"1004","code":"h456wer53","name":"Bracelet","description":"Product Description","image":"bracelet.jpg","price":15,"category":"Accessories","quantity":73,"inventoryStatus":"INSTOCK","rating":4},{"id":"1005","code":"av2231fwg","name":"Brown Purse","description":"Product Description","image":"brown-purse.jpg","price":120,"category":"Accessories","quantity":0,"inventoryStatus":"OUTOFSTOCK","rating":4},{"id":"1006","code":"bib36pfvm","name":"Chakra Bracelet","description":"Product Description","image":"chakra-bracelet.jpg","price":32,"category":"Accessories","quantity":5,"inventoryStatus":"LOWSTOCK","rating":3},{"id":"1007","code":"mbvjkgip5","name":"Galaxy Earrings","description":"Product Description","image":"galaxy-earrings.jpg","price":34,"category":"Accessories","quantity":23,"inventoryStatus":"INSTOCK","rating":5},{"id":"1008","code":"vbb124btr","name":"Game Controller","description":"Product Description","image":"game-controller.jpg","price":99,"category":"Electronics","quantity":2,"inventoryStatus":"LOWSTOCK","rating":4},{"id":"1009","code":"cm230f032","name":"Gaming Set","description":"Product Description","image":"gaming-set.jpg","price":299,"category":"Electronics","quantity":63,"inventoryStatus":"INSTOCK","rating":3}]}'
+
+            const { createApp, onMounted, ref } = Vue;
+
+            const App = {
+                setup() {
+                    onMounted(() => {
+                        var dt = JSON.parse(json).data;
+                        products.value = dt;
+                    })
+
+                    const products = ref();
+                    return { products }
+                },
+                components: {
+                    "p-datatable": primevue.datatable,
+                    "p-column": primevue.column
+                }
+            };
+
+            const app = createApp(App);
+            app.use(primevue.config.default);
+            app.mount("#app");
+            if (window.isMobile) {
+                $(".footer").css('display', 'block');
+            }  
+        </script>
+    </div>
+    <div id="app2">
+        Example 2
+        <textarea></textarea>
+    </div>
+    <div id="app3">
+        Example 3
+        <input type="text" />
+    </div>
+    <div class="footer">
+        <div style="display: flex; justify-content: space-around;height: 30px;
+                align-items: center;">
+            <div onclick="P1();" style="cursor: pointer;">page 1</div>
+            <div onclick="P2();" style="cursor: pointer;">page 2</div>
+            <div onclick="P3();" style="cursor: pointer;">page 3</div>
+        </div>
+    </div>
+    <script>function P1() {
+        $("#app").show(500);
+        $("#app2").hide(500);
+        $("#app3").hide(500);
+    }
+    function P2() {
+        $("#app2").show(500);
+        $("#app").hide(500);
+        $("#app3").hide(500);
+    }
+    function P3() {
+        $("#app3").show(500);
+        $("#app2").hide(500);
+        $("#app").hide(500);
+    }</script>
+</body>
+</html>

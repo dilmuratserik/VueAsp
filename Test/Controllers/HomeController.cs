@@ -14,16 +14,17 @@ namespace Test.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
-        private List<PersonModel> PersonModels = new List<PersonModel>
+
+        private List<Person> Person = new List<Person>
         {
-            new PersonModel
+            new Person
             {
                 Name = "Game Controller",
                 Code = "vbb124btr",
                 Category = "Electronics",
                 Quantity = 2
             },
-            new PersonModel
+            new Person  
             {
                 Name = "Black Watch",
                 Code = "vbb124btr",
@@ -31,7 +32,6 @@ namespace Test.Controllers
                 Quantity = 2
             }
         };
-
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
@@ -44,9 +44,9 @@ namespace Test.Controllers
         }
 
         [HttpPost]
-        public List<PersonModel> LoadData()
+        public List<Person> LoadData()
         {
-            return PersonModels;
+            return Person;
         }
 
         //[HttpPost]
@@ -82,5 +82,7 @@ namespace Test.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        
     }
 }

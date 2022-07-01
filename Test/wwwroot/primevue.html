@@ -22,17 +22,22 @@
     <div id="app">
         <button @click="load()">Click</button>
         <p-datatable :value="products" show-gridlines responsive-layout="scroll">
-            <p-column field="Code" header="Code"></p-column>
+            <p-column field="code" header="Code"></p-column>
             <p-column field="name" header="Name"></p-column>
             <p-column field="category" header="Category"></p-column>
             <p-column field="quantity" header="Quantity"></p-column>
         </p-datatable>
     </div>
     <script type="module">
+        const { createApp, ref, onMounted } = Vue;
 
         const App = {
             data() {
-                return { products: [] } 
+                return { products: [] }
+            },
+            components: {
+                "p-datatable": primevue.datatable,
+                "p-column": primevue.column
             },
             methods: {
                 load() {
@@ -49,8 +54,10 @@
                 }
             }
         };
+
         createApp(App)
             .mount("#app");
+
     </script>
 </body>
 </html>
